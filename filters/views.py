@@ -1,6 +1,5 @@
 from django.shortcuts import render
 import pandas as pd
-from csv import writer
 import json
 
 # Create your views here.
@@ -9,6 +8,7 @@ temp={}
 def index(request):
     temp['rank']=1
     temp['quota']=0
+    temp['dept']=0
     temp['CSE GMR']= 1
     temp['IT GMR']= 1
     temp['ME GMR']=1
@@ -85,6 +85,31 @@ def find_college(request):
         context={'temp':temp,'gmr':gmr, 'd':data, 'q':q, 'quota':temp['quota']}
         return render(request, 'showtable.html', context)
 
+
+
+
+def departmentwise(request):
+    college_df = pd.read_csv('./college_main.csv')
+    if request.method=='POST':
+        temp['rank']=int(request.POST.get('rank'))
+        temp['dept']=int(request.POST.get('dept'))
+
+    d = temp['dept']
+
+    if d==0:
+        college_df = college_df.loc[college_df['CSE GMR'] >= temp['rank']]
+
+    if d==3:
+        college_df = college_df.loc[college_df['ECE GMR'] >= temp['rank']]
+
+
+    json_records = college_df.reset_index().to_json(orient='records')
+    data = []
+    data = json.loads(json_records)
+    gmr = 1
+    q = 1
+    context = {'temp': temp, 'gmr': gmr, 'd': data, 'q': q, 'quota': temp['quota'], 'dept' : temp['dept']}
+    return render(request, 'showtable.html', context)
 
 
 
