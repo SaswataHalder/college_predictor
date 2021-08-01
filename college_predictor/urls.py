@@ -22,5 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url('^$', views.index, name='Homepage'),
     url('predict_rank', views.predict_rank, name='Cutoff'),
-    url('find_college', views.find_college, name='Next'),
+    url('find_college', views.find_college, name='Quota'),
+    url('departmentwise', views.departmentwise, name='Department'),
 ]

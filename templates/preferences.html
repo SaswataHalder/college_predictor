@@ -1,11 +1,26 @@
-<div class="mb-3">
-    <label class="form-label">Department</label>
-    <select class="form-select form-select-sm" aria-label="Default select example" name="dept" style="width:30%">
-      <option value="0"  >Computer Science</option>
-      <option value="1" >Information Technology</option>
-      <option value="2">Electrical Engineering</option>
-      <option value="3">Electrical and Communications Engineering</option>
-      <option value="4">Mech Engineering</option>
-    </select>
-  </div>
+<form method="post" enctype="multipart/form-data" action="departmentwise">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label class="form-label"><h2>GMR RANK</h2></label>
+        <input type="number" required class="form-control form-control-lg" value={{temp.rank}} name="rank" readonly>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label"><h2>QUOTA</h2></label>
+        <input type="text" required class="form-control form-control-lg" value={{q}} name="quota" readonly>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Department</label>
+        <select class="form-select form-select-sm" aria-label="Default select example" name="dept" style="width:30%"
+                onchange="this.form.submit()">
+            <option value="100">--</option>
+            <option value="0">Computer Science</option>
+            <option value="1">Information Technology</option>
+            <option value="2">Electrical Engineering</option>
+            <option value="3">Electrical and Communications Engineering</option>
+            <option value="4">Mechanical Engineering</option>
+        </select>
+    </div>
+
+</form>
 
