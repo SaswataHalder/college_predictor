@@ -19,7 +19,7 @@
         <tr>
             <th>NAME_OF_COLLEGES</th>
             <th>LOCATION</th>
-            <th>GOVERNMENT</th>
+            <th>GOVERNMENT/PRIVATE</th>
             <th>SEM_FEES</th>
         </tr>
         </thead>
@@ -34,7 +34,12 @@
             <td>{{i.SEM_FEES}}</td>
         </tr>
         {% endfor %}
+
+        {% else %}
+        <h2>NO COLLEGES FOUND</h2>
+
         {% endif %}
+
         </tbody>
     </table>
 </div>

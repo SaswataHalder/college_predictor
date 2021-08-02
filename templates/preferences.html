@@ -11,7 +11,7 @@
     </div>
     {% if dept %}
     <div class="mb-3">
-        <label class="form-label">Department</label>
+        <label class="form-label">Choose Department</label>
         <select aria-label="Default select example" class="form-select form-select-sm" name="dept" onchange="this.form.submit()"
                 style="width:30%">
             <option value={{dep}}>{{dept}}</option>
@@ -26,7 +26,7 @@
 
     {% else %}
     <div class="mb-3">
-        <label class="form-label">Department</label>
+        <label class="form-label">Choose Department</label>
         <select aria-label="Default select example" class="form-select form-select-sm" name="dept" onchange="this.form.submit()"
                 style="width:30%">
             <option value="100">All</option>
@@ -41,7 +41,7 @@
 
     {% if aff %}
     <div class="mb-3">
-        <label class="form-label">Affiliation</label>
+        <label class="form-label">Choose Government or Private</label>
         <select aria-label="Default select example" class="form-select form-select-sm" name="affil" onchange="this.form.submit()"
                 style="width:30%">
             <option selected value={{af}}>{{aff}}</option>
@@ -53,7 +53,7 @@
 
     {% else %}
     <div class="mb-3">
-        <label class="form-label">Affiliation</label>
+        <label class="form-label">Choose Government or Private</label>
         <select aria-label="Default select example" class="form-select form-select-sm" name="affil" onchange="this.form.submit()"
                 style="width:30%">
             <option value="0">All</option>
