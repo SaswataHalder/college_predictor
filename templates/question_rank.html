@@ -1,14 +1,14 @@
 {% if gmr %}
-<form method="post" enctype="multipart/form-data" action="find_college">
+<form action="find_college" enctype="multipart/form-data" method="post">
     {% csrf_token %}
     <div class="mb-3">
         <label class="form-label"><h2>GMR RANK</h2></label>
-        <input type="number" required class="form-control form-control-lg" value={{temp.rank}} name="rank" readonly>
+        <input class="form-control form-control-lg" name="rank" readonly required type="number" value={{temp.rank}}>
     </div>
 
     <div class="mb-3">
         <label class="form-label"><h2>QUOTA</h2></label>
-        <select class="form-select form-select-lg" aria-label="Default select example" name="quota">
+        <select aria-label="Default select example" class="form-select form-select-lg" name="quota">
             <option value="0">General</option>
             <option value="1">OBC-A</option>
             <option value="2">OBC-B</option>
@@ -17,17 +17,17 @@
         </select>
     </div>
 
-    <button type="submit" class="btn btn-primary mt-3" formtarget="_self">Find Colleges</button>
+    <button class="btn btn-primary mt-3" formtarget="_self" type="submit">Find Colleges</button>
 </form>
 {% else %}
-<form method="post" enctype="multipart/form-data" action="predict_rank">
+<form action="predict_rank" enctype="multipart/form-data" method="post">
     {% csrf_token %}
     <div class="mb-3">
         <label class="form-label"><h2>GMR RANK</h2></label>
-        <input type="number" required class="form-control form-control-lg" value={{temp.rank}} name="rank" min="1"
-               max="3000000">
+        <input class="form-control form-control-lg" max="3000000" min="1" name="rank" required type="number"
+               value={{temp.rank}}>
     </div>
 
-    <button type="submit" class="btn btn-primary" formtarget="_self">Next Question</button>
+    <button class="btn btn-primary" formtarget="_self" type="submit">Next Question</button>
 </form>
 {% endif %}

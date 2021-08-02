@@ -1,26 +1,133 @@
-<form method="post" enctype="multipart/form-data" action="departmentwise">
+<form action="departmentwise" enctype="multipart/form-data" method="post">
     {% csrf_token %}
     <div class="mb-3">
         <label class="form-label"><h2>GMR RANK</h2></label>
-        <input type="number" required class="form-control form-control-lg" value={{temp.rank}} name="rank" readonly>
+        <input class="form-control form-control-lg" name="rank" readonly required type="number" value={{temp.rank}}>
     </div>
 
     <div class="mb-3">
         <label class="form-label"><h2>QUOTA</h2></label>
-        <input type="text" required class="form-control form-control-lg" value={{q}} name="quota" readonly>
+        <input class="form-control form-control-lg" name="quota" readonly required type="text" value={{q}}>
     </div>
+    {% if dept %}
     <div class="mb-3">
         <label class="form-label">Department</label>
-        <select class="form-select form-select-sm" aria-label="Default select example" name="dept" style="width:30%"
-                onchange="this.form.submit()">
-            <option value="100">--</option>
+        <select aria-label="Default select example" class="form-select form-select-sm" name="dept" onchange="this.form.submit()"
+                style="width:30%">
+            <option value={{dep}}>{{dept}}</option>
+            <option value="100">All</option>
             <option value="0">Computer Science</option>
             <option value="1">Information Technology</option>
             <option value="2">Electrical Engineering</option>
-            <option value="3">Electrical and Communications Engineering</option>
+            <option value="3">Electronics and Communications Engineering</option>
             <option value="4">Mechanical Engineering</option>
         </select>
     </div>
+
+    {% else %}
+    <div class="mb-3">
+        <label class="form-label">Department</label>
+        <select aria-label="Default select example" class="form-select form-select-sm" name="dept" onchange="this.form.submit()"
+                style="width:30%">
+            <option value="100">All</option>
+            <option value="0">Computer Science</option>
+            <option value="1">Information Technology</option>
+            <option value="2">Electrical Engineering</option>
+            <option value="3">Electronics and Communications Engineering</option>
+            <option value="4">Mechanical Engineering</option>
+        </select>
+    </div>
+    {% endif %}
+
+    {% if aff %}
+    <div class="mb-3">
+        <label class="form-label">Affiliation</label>
+        <select aria-label="Default select example" class="form-select form-select-sm" name="affil" onchange="this.form.submit()"
+                style="width:30%">
+            <option selected value={{af}}>{{aff}}</option>
+            <option value="0">All</option>
+            <option value="1">G</option>
+            <option value="2">P</option>
+        </select>
+    </div>
+
+    {% else %}
+    <div class="mb-3">
+        <label class="form-label">Affiliation</label>
+        <select aria-label="Default select example" class="form-select form-select-sm" name="affil" onchange="this.form.submit()"
+                style="width:30%">
+            <option value="0">All</option>
+            <option value="1">G</option>
+            <option value="2">P</option>
+        </select>
+    </div>
+    {% endif %}
+
+    {% if loc %}
+    <div class="mb-3">
+        <label class="form-label">Choose Location</label>
+        <select aria-label="Default select example" class="form-select form-select-sm" name="location" onchange="this.form.submit()"
+                style="width:30%">
+            <option selected value={{l}}>{{loc}}</option>
+            <option value="100">Any</option>
+            <option value="0">Alipurduar</option>
+            <option value="1">Bankura</option>
+            <option value="2">Birbhum</option>
+            <option value="3">Cooch Behar</option>
+            <option value="4">Dakshin Dinajpur (South Dinajpur)</option>
+            <option value="5">Darjeeling</option>
+            <option value="6">Hooghly</option>
+            <option value="7">Howrah</option>
+            <option value="8">Jalpaiguri</option>
+            <option value="9">Jhargram</option>
+            <option value="10">Kalimpong</option>
+            <option value="11">Kolkata</option>
+            <option value="12">Malda</option>
+            <option value="13">Murshidabad</option>
+            <option value="14">Nadia</option>
+            <option value="15">North 24 Parganas</option>
+            <option value="16">Paschim (West) Burdwan (Bardhaman)</option>
+            <option value="17">Purba Burdwan (Bardhaman)</option>
+            <option value="18">Purba Medinipur (East Medinipur)</option>
+            <option value="19">Purulia</option>
+            <option value="20">South 24 Parganas</option>
+            <option value="21">Uttar Dinajpur (North Dinajpur)</option>
+
+        </select>
+    </div>
+
+    {% else %}
+    <div class="mb-3">
+        <label class="form-label">Choose Location</label>
+        <select aria-label="Default select example" class="form-select form-select-sm" name="location" onchange="this.form.submit()"
+                style="width:30%">
+            <option value="100">Any</option>
+            <option value="0">Alipurduar</option>
+            <option value="1">Bankura</option>
+            <option value="2">Birbhum</option>
+            <option value="3">Cooch Behar</option>
+            <option value="4">Dakshin Dinajpur (South Dinajpur)</option>
+            <option value="5">Darjeeling</option>
+            <option value="6">Hooghly</option>
+            <option value="7">Howrah</option>
+            <option value="8">Jalpaiguri</option>
+            <option value="9">Jhargram</option>
+            <option value="10">Kalimpong</option>
+            <option value="11">Kolkata</option>
+            <option value="12">Malda</option>
+            <option value="13">Murshidabad</option>
+            <option value="14">Nadia</option>
+            <option value="15">North 24 Parganas</option>
+            <option value="16">Paschim (West) Burdwan (Bardhaman)</option>
+            <option value="17">Purba Burdwan (Bardhaman)</option>
+            <option value="18">Purba Medinipur (East Medinipur)</option>
+            <option value="19">Purulia</option>
+            <option value="20">South 24 Parganas</option>
+            <option value="21">Uttar Dinajpur (North Dinajpur)</option>
+
+        </select>
+    </div>
+    {% endif %}
 
 </form>
 
