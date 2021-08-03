@@ -138,3 +138,13 @@ def departmentwise(request):
     context = {'temp': temp, 'd': data, 'q': q.get(k), 'dept': department.get(dep), 'dep': dep,
                'aff': affiliation.get(af), 'af': af, 'loc': location.get(lo), 'l': lo}
     return render(request, 'showtable.html', context)
+
+def loan(request):
+    query = request.GET.get('data')
+    if query:
+        query = int(query)*8
+    else:
+        query=0
+    print(query)
+    context = {'query': query}
+    return render(request, 'loan.html', context)

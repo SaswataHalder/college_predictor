@@ -11,8 +11,10 @@
     </div>
     {% if dept %}
     <div class="mb-3">
+        <h2>Preferences</h2>
         <label class="form-label">Choose Department</label>
-        <select aria-label="Default select example" class="form-select form-select-sm" name="dept" onchange="this.form.submit()"
+        <select aria-label="Default select example" class="form-select form-select-sm" name="dept"
+                onchange="this.form.submit()"
                 style="width:30%">
             <option value={{dep}}>{{dept}}</option>
             <option value="100">All</option>
@@ -26,8 +28,10 @@
 
     {% else %}
     <div class="mb-3">
+        <h2>Preferences</h2>
         <label class="form-label">Choose Department</label>
-        <select aria-label="Default select example" class="form-select form-select-sm" name="dept" onchange="this.form.submit()"
+        <select aria-label="Default select example" class="form-select form-select-sm" name="dept"
+                onchange="this.form.submit()"
                 style="width:30%">
             <option value="100">All</option>
             <option value="0">Computer Science</option>
@@ -41,8 +45,9 @@
 
     {% if aff %}
     <div class="mb-3">
-        <label class="form-label">Choose Government or Private</label>
-        <select aria-label="Default select example" class="form-select form-select-sm" name="affil" onchange="this.form.submit()"
+        <label class="form-label">Choose Government(G) or Private(P)</label>
+        <select aria-label="Default select example" class="form-select form-select-sm" name="affil"
+                onchange="this.form.submit()"
                 style="width:30%">
             <option selected value={{af}}>{{aff}}</option>
             <option value="0">All</option>
@@ -53,8 +58,9 @@
 
     {% else %}
     <div class="mb-3">
-        <label class="form-label">Choose Government or Private</label>
-        <select aria-label="Default select example" class="form-select form-select-sm" name="affil" onchange="this.form.submit()"
+        <label class="form-label">Choose Government(G) or Private(P)</label>
+        <select aria-label="Default select example" class="form-select form-select-sm" name="affil"
+                onchange="this.form.submit()"
                 style="width:30%">
             <option value="0">All</option>
             <option value="1">G</option>
@@ -66,7 +72,8 @@
     {% if loc %}
     <div class="mb-3">
         <label class="form-label">Choose Location</label>
-        <select aria-label="Default select example" class="form-select form-select-sm" name="location" onchange="this.form.submit()"
+        <select aria-label="Default select example" class="form-select form-select-sm" name="location"
+                onchange="this.form.submit()"
                 style="width:30%">
             <option selected value={{l}}>{{loc}}</option>
             <option value="100">Any</option>
@@ -99,7 +106,8 @@
     {% else %}
     <div class="mb-3">
         <label class="form-label">Choose Location</label>
-        <select aria-label="Default select example" class="form-select form-select-sm" name="location" onchange="this.form.submit()"
+        <select aria-label="Default select example" class="form-select form-select-sm" name="location"
+                onchange="this.form.submit()"
                 style="width:30%">
             <option value="100">Any</option>
             <option value="0">Alipurduar</option>

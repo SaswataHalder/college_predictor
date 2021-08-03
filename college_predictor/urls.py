@@ -24,4 +24,5 @@ urlpatterns = [
     url('predict_rank', views.predict_rank, name='Cutoff'),
     url('find_college', views.find_college, name='Quota'),
     url('departmentwise', views.departmentwise, name='Department'),
+    url('loan', views.loan, name='loan'),
 ]

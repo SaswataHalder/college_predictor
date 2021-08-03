@@ -21,6 +21,7 @@
             <th>LOCATION</th>
             <th>GOVERNMENT/PRIVATE</th>
             <th>SEM_FEES</th>
+            <th>LOAN(Y/N)</th>
         </tr>
         </thead>
         <tbody>
@@ -32,6 +33,11 @@
             <td>{{i.LOCATION}}</td>
             <td>{{i.GOVERNMENT}}</td>
             <td>{{i.SEM_FEES}}</td>
+            <td>
+                <a class="btn btn-primary btn-sm" href="{% url 'loan' %}?data={{i.SEM_FEES}}" target="_blank" type="button" >YES</a>
+                <button class="btn btn-primary btn-sm" type="button">NO</button>
+            </td>
+
         </tr>
         {% endfor %}
 
