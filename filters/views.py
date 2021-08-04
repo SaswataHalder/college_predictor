@@ -1,7 +1,9 @@
 import json
 
 import pandas as pd
+from django.http import HttpResponse
 from django.shortcuts import render
+from django_xhtml2pdf.utils import generate_pdf
 
 # Create your views here.
 temp = {}
@@ -15,6 +17,7 @@ uniquelocation = college_df['LOCATION'].unique()
 
 location = {i: uniquelocation[i] for i in range(0, len(uniquelocation))}
 location[100] = 'Any'
+query = 0
 
 
 def index(request):
@@ -100,36 +103,36 @@ def departmentwise(request):
     if dep == 0:
         college_dfc = college_df.loc[
             (college_df['CSE'] >= temp['rank']) & (
-                        (college_df['GOVERNMENT'] == affiliation.get((af))) | (temp['affil'] == 0)) & (
-                        (college_df['LOCATION'] == location.get((lo))) | (temp['location'] == 100))]
+                    (college_df['GOVERNMENT'] == affiliation.get((af))) | (temp['affil'] == 0)) & (
+                    (college_df['LOCATION'] == location.get((lo))) | (temp['location'] == 100))]
         json_records = college_dfc.reset_index().to_json(orient='records')
     if dep == 1:
         college_dfi = college_df.loc[(college_df['IT'] >= temp['rank']) & (
-                    (college_df['GOVERNMENT'] == affiliation.get((af))) | (temp['affil'] == 0)) & (
-                                                 (college_df['LOCATION'] == location.get((lo))) | (
-                                                     temp['location'] == 100))]
+                (college_df['GOVERNMENT'] == affiliation.get((af))) | (temp['affil'] == 0)) & (
+                                             (college_df['LOCATION'] == location.get((lo))) | (
+                                             temp['location'] == 100))]
         json_records = college_dfi.reset_index().to_json(orient='records')
     if dep == 2:
         college_dfee = college_df.loc[(college_df['EE'] >= temp['rank']) & (
-                    (college_df['GOVERNMENT'] == affiliation.get((af))) | (temp['affil'] == 0)) & (
-                                                  (college_df['LOCATION'] == location.get((lo))) | (
-                                                      temp['location'] == 100))]
+                (college_df['GOVERNMENT'] == affiliation.get((af))) | (temp['affil'] == 0)) & (
+                                              (college_df['LOCATION'] == location.get((lo))) | (
+                                              temp['location'] == 100))]
         json_records = college_dfee.reset_index().to_json(orient='records')
     if dep == 4:
         college_dfm = college_df.loc[(college_df['ME'] >= temp['rank']) & (
-                    (college_df['GOVERNMENT'] == affiliation.get((af))) | (temp['affil'] == 0)) & (
-                                                 (college_df['LOCATION'] == location.get((lo))) | (
-                                                     temp['location'] == 100))]
+                (college_df['GOVERNMENT'] == affiliation.get((af))) | (temp['affil'] == 0)) & (
+                                             (college_df['LOCATION'] == location.get((lo))) | (
+                                             temp['location'] == 100))]
         json_records = college_dfm.reset_index().to_json(orient='records')
     if dep == 3:
         college_dfece = college_df.loc[
             (college_df['ECE'] >= temp['rank']) & (
-                        (college_df['GOVERNMENT'] == affiliation.get((af))) | (temp['affil'] == 0)) & (
-                        (college_df['LOCATION'] == location.get((lo))) | (temp['location'] == 100))]
+                    (college_df['GOVERNMENT'] == affiliation.get((af))) | (temp['affil'] == 0)) & (
+                    (college_df['LOCATION'] == location.get((lo))) | (temp['location'] == 100))]
         json_records = college_dfece.reset_index().to_json(orient='records')
     if dep == 100:
         college_dfg = college_df.loc[((college_df['GOVERNMENT'] == affiliation.get((af))) | (temp['affil'] == 0)) & (
-                    (college_df['LOCATION'] == location.get((lo))) | (temp['location'] == 100))]
+                (college_df['LOCATION'] == location.get((lo))) | (temp['location'] == 100))]
         json_records = college_dfg.reset_index().to_json(orient='records')
 
     data = []
@@ -139,12 +142,16 @@ def departmentwise(request):
                'aff': affiliation.get(af), 'af': af, 'loc': location.get(lo), 'l': lo}
     return render(request, 'showtable.html', context)
 
+
 def loan(request):
+    global query
     query = request.GET.get('data')
     if query:
-        query = int(query)*8
+        query = int(query) * 8
     else:
-        query=0
-    print(query)
+        query = 0
+    resp = HttpResponse(content_type='application/pdf')
+    resp['Content-Disposition'] = 'attachment; filename="loan-application.pdf"'
     context = {'query': query}
-    return render(request, 'loan.html', context)
+    result = generate_pdf('loan.html', file_object=resp, context=context)
+    return result
